@@ -14,7 +14,7 @@ def read_images(path, height = 100, width = 100, is_train = True):
 			image = imread(file_path)
 			image = imresize(image, (height, width))
 			X.append(image)
-		
+
 			# read in label
 			if is_train:
 				label = fn[:fn.find('.')]
@@ -24,8 +24,8 @@ def read_images(path, height = 100, width = 100, is_train = True):
 					Y.append(0)
 
 			# for debug
-			# if len(X)>=1000:
-			# 	break
+			if len(X)>=1000:
+				break
 
 	return train_test_split(np.array(X), trans_to_one_hot(np.array(Y)), test_size=0.2, random_state=27)
 
