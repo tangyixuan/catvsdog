@@ -1,14 +1,20 @@
 import os
+import sys
 import numpy as np
 from scipy.misc import imread, imresize
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 def read_images(path, height = 100, width = 100, is_train = True):
 	fn_list = os.listdir(path)
 	X = []
 	Y = []
+	count = 0
 	for fn in fn_list:
 		if fn[-3:] == 'jpg':
+			count += 1
+			sys.stdout.write('\r{} / {}'.format(count, len(fn_list)))
+			sys.stdout.flush()
+
 			# read in image
 			file_path = os.path.join(path, fn)
 			image = imread(file_path)
@@ -22,10 +28,6 @@ def read_images(path, height = 100, width = 100, is_train = True):
 					Y.append(1)
 				if label == 'dog':
 					Y.append(0)
-
-			# for debug
-			if len(X)>=1000:
-				break
 
 	return train_test_split(np.array(X), trans_to_one_hot(np.array(Y)), test_size=0.2, random_state=27)
 
