@@ -7,7 +7,7 @@ from keras.optimizers import SGD
 def get_vgg():
 	model = Sequential()
 	# this applies 32 convolution filters of size 3x3 each.
-	model.add(Convolution2D(32, 3, 3, border_mode='valid', input_shape=(100, 100, 3)))
+	model.add(Convolution2D(32, 3, 3, border_mode='valid', input_shape=(32, 32, 3)))
 	model.add(Activation('relu'))
 	model.add(Convolution2D(32, 3, 3))
 	model.add(Activation('relu'))
@@ -35,9 +35,6 @@ def get_vgg():
 
 	return model
 
-def get_alexnet():
-	model = Sequential()
-	return model
 
 def print_model(m):
 	print '\nsummary',m.summary(), '\n'
