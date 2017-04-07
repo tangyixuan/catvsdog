@@ -4,16 +4,16 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Dropout, Flatten, Dense
 
-img_width, img_height = 150, 150
+img_width, img_height = 128, 128
 
-top_model_weights_path = '../data/ft_fully_connected_weights.h5'
 train_data_dir = '../data/train2k'
 validation_data_dir = '../data/val1k'
+top_model_weights_path = '../data/fc_model.h5'
 
-epochs = 100
-batch_size = 32
 nb_train_samples = 4000
-nb_validation_samples = 1984 # need to be multiple of batches
+nb_validation_samples = 2000
+epochs = 100
+batch_size = 16
 
 
 # use vgg convolutional layers to extract features
